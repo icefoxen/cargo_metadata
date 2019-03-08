@@ -441,7 +441,7 @@ impl MetadataCommand {
     pub fn exec(&mut self) -> Result<Metadata> {
         let cargo = env::var("CARGO").unwrap_or_else(|_| String::from("cargo"));
         let mut cmd = Command::new(cargo);
-        cmd.args(&["+nightly", "-Zno-index-update", "metadata", "--format-version", "1"]);
+        cmd.args(&["metadata", "--format-version", "1", "-Z", "no-index-update"]);
 
         if self.no_deps {
             cmd.arg("--no-deps");
